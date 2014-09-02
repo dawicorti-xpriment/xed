@@ -1,6 +1,6 @@
 {
   "name": "xed",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "XML stream editor for command line",
   "scripts": {
     "test": "make test"

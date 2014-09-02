@@ -14,12 +14,6 @@ var argv = require('minimist')(process.argv.slice(2));
 var streamify = require('streamify');
 var xed = require('../package.json');
 
-
-if (argv._.length !== 1) {
-  program.outputHelp();
-  process.exit(1);
-}
-
 var xedStream = streamify();
 var rawXML = '';
 var value = argv._[0];
