@@ -1,0 +1,30 @@
+{
+  "name": "xed",
+  "version": "0.0.0",
+  "description": "XML stream editor for command line",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:dawicorti/xed"
+  },
+  "keywords": [
+    "xml",
+    "sed",
+    "command",
+    "line"
+  ],
+  "author": "David Corticchiato",
+  "license": "BSD-2-Clause",
+  "readme": "README.md",
+  "bugs": {
+    "url": "https://github.com/dawicorti/xed/issues"
+  },
+  "homepage": "https://github.com/dawicorti/xed",
+  "dependencies": {
+    "cheerio": "~0.17.0",
+    "streamify": "~0.2.4",
+    "minimist": "~1.1.0"
+  }
+}

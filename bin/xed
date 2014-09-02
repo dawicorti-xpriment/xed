@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+/*
+ * xed : XML stream editor for command line
+ */
+
+
+/**
+ * Module dependencies.
+ */
+
+var cheerio = require('cheerio');
+var argv = require('minimist')(process.argv.slice(2));
+var streamify = require('streamify');
+var xed = require('../package.json');
+
+
+if (argv._.length !== 1) {
+  program.outputHelp();
+  process.exit(1);
+}
+
+var xedStream = streamify();
+var rawXML = '';
+var value = argv._[0];
+
+
+function edit() {
+  var $ = cheerio.load(rawXML, {
+    xmlMode: true,
+    lowerCaseAttributeNames: false,
+    lowerCaseTagNames: false
+  });
+
+  var $el = $(argv.selector);
+
+  if (argv.attr) $el.attr(argv.attr, value);
+
+  rawXML = $.xml();
+}
+
+
+xedStream.on('pipe' , function (source) {
+  source.on('data', function (buf) {
+    rawXML += buf.toString();
+  });
+
+  source.on('end', function () {
+    edit();
+    xedStream.emit('data', new Buffer(rawXML));
+    xedStream.emit('end');
+  });
+});
+
+
+process.stdin
+  .pipe(xedStream)
+  .pipe(process.stdout);
