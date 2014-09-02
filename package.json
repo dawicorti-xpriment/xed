@@ -20,7 +20,7 @@
   "readme": "README.md",
   "bin": {
     "xed": "bin/xed"
-  }
+  },
   "bugs": {
     "url": "https://github.com/dawicorti/xed/issues"
   },
